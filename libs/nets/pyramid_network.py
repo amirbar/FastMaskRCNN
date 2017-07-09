@@ -15,7 +15,6 @@ from libs.layers import mask_encoder
 from libs.layers import mask_decoder
 from libs.layers import gen_all_anchors
 from libs.layers import ROIAlign
-from libs.layers import ROIAlign_
 from libs.layers import sample_rpn_outputs
 from libs.layers import sample_rpn_outputs_with_gt
 from libs.layers import assign_boxes
@@ -273,7 +272,7 @@ def build_heads(pyramid, ih, iw, num_classes, base_anchors, is_training=False, g
             p = 'P%d'%i
             splitted_rois = assigned_rois[i-2]
             batch_inds = assigned_batch_inds[i-2]
-            cropped, boxes_in_crop = ROIAlign_(pyramid[p], splitted_rois, batch_inds, ih, iw, stride=2**i,
+            cropped, boxes_in_crop = ROIAlign(pyramid[p], splitted_rois, batch_inds, ih, iw, stride=2**i,
                                pooled_height=14, pooled_width=14)
             # cropped = ROIAlign(pyramid[p], splitted_rois, batch_inds, stride=2**i,
             #                    pooled_height=14, pooled_width=14)
@@ -334,7 +333,7 @@ def build_heads(pyramid, ih, iw, num_classes, base_anchors, is_training=False, g
             p = 'P%d'%i
             splitted_rois = assigned_rois[i-2]
             batch_inds = assigned_batch_inds[i-2]
-            cropped = ROIAlign(pyramid[p], splitted_rois, batch_inds, stride=2**i,
+            cropped, _ = ROIAlign(pyramid[p], splitted_rois, batch_inds, stride=2**i,
                                pooled_height=14, pooled_width=14)
             cropped_rois.append(cropped)
             ordered_rois.append(splitted_rois)

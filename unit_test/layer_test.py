@@ -236,7 +236,7 @@ class ROIAlign_test(layer_test):
             pooled_width = 5
             batch_inds = np.zeros((self.N, ), dtype=np.int32)
             batch_inds = tf.convert_to_tensor(batch_inds)
-            feats = ROIAlign(img, boxes, batch_inds, stride=stride, pooled_height=pooled_height, pooled_width=pooled_width,)
+            feats, _ = ROIAlign(img, boxes, batch_inds, stride=stride, pooled_height=pooled_height, pooled_width=pooled_width,)
             self.feats = feats.eval()
             print (self.feats.shape)
             print (self.feats.reshape((self.N, pooled_height, pooled_width)))
