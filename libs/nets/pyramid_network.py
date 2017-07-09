@@ -272,7 +272,7 @@ def build_heads(pyramid, ih, iw, num_classes, base_anchors, is_training=False, g
             p = 'P%d'%i
             splitted_rois = assigned_rois[i-2]
             batch_inds = assigned_batch_inds[i-2]
-            cropped, boxes_in_crop = ROIAlign(pyramid[p], splitted_rois, batch_inds, ih, iw, stride=2**i,
+            cropped, boxes_in_crop = ROIAlign(pyramid[p], splitted_rois, batch_inds, stride=2**i,
                                pooled_height=14, pooled_width=14)
             # cropped = ROIAlign(pyramid[p], splitted_rois, batch_inds, stride=2**i,
             #                    pooled_height=14, pooled_width=14)
