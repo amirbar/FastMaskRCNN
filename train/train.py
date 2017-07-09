@@ -71,60 +71,7 @@ def restore(sess):
      if FLAGS.restore_previous_if_exists:
         try:
             checkpoint_path = tf.train.latest_checkpoint(FLAGS.train_dir)
-            ###########
-            restorer = tf.train.Saver()
-            ###########
-
-            ###########
-            # not_restore = [ 'pyramid/fully_connected/weights:0', 
-            #                 'pyramid/fully_connected/biases:0',
-            #                 'pyramid/fully_connected/weights:0', 
-            #                 'pyramid/fully_connected_1/biases:0',
-            #                 'pyramid/fully_connected_1/weights:0', 
-            #                 'pyramid/fully_connected_2/weights:0', 
-            #                 'pyramid/fully_connected_2/biases:0',
-            #                 'pyramid/fully_connected_3/weights:0', 
-            #                 'pyramid/fully_connected_3/biases:0',
-            #                 'pyramid/Conv/weights:0', 
-            #                 'pyramid/Conv/biases:0',
-            #                 'pyramid/Conv_1/weights:0', 
-            #                 'pyramid/Conv_1/biases:0', 
-            #                 'pyramid/Conv_2/weights:0', 
-            #                 'pyramid/Conv_2/biases:0', 
-            #                 'pyramid/Conv_3/weights:0', 
-            #                 'pyramid/Conv_3/biases:0',
-            #                 'pyramid/Conv2d_transpose/weights:0', 
-            #                 'pyramid/Conv2d_transpose/biases:0', 
-            #                 'pyramid/Conv_4/weights:0',
-            #                 'pyramid/Conv_4/biases:0',
-            #                 'pyramid/fully_connected/weights/Momentum:0', 
-            #                 'pyramid/fully_connected/biases/Momentum:0',
-            #                 'pyramid/fully_connected/weights/Momentum:0', 
-            #                 'pyramid/fully_connected_1/biases/Momentum:0',
-            #                 'pyramid/fully_connected_1/weights/Momentum:0', 
-            #                 'pyramid/fully_connected_2/weights/Momentum:0', 
-            #                 'pyramid/fully_connected_2/biases/Momentum:0',
-            #                 'pyramid/fully_connected_3/weights/Momentum:0', 
-            #                 'pyramid/fully_connected_3/biases/Momentum:0',
-            #                 'pyramid/Conv/weights/Momentum:0', 
-            #                 'pyramid/Conv/biases/Momentum:0',
-            #                 'pyramid/Conv_1/weights/Momentum:0', 
-            #                 'pyramid/Conv_1/biases/Momentum:0', 
-            #                 'pyramid/Conv_2/weights/Momentum:0', 
-            #                 'pyramid/Conv_2/biases/Momentum:0', 
-            #                 'pyramid/Conv_3/weights/Momentum:0', 
-            #                 'pyramid/Conv_3/biases/Momentum:0',
-            #                 'pyramid/Conv2d_transpose/weights/Momentum:0', 
-            #                 'pyramid/Conv2d_transpose/biases/Momentum:0', 
-            #                 'pyramid/Conv_4/weights/Momentum:0',
-            #                 'pyramid/Conv_4/biases/Momentum:0',]
-            # vars_to_restore = [v for v in  tf.all_variables()if v.name not in not_restore]
-            # restorer = tf.train.Saver(vars_to_restore)
-            # for var in vars_to_restore:
-            #     print ('restoring ', var.name)
-            ############
-
-            restorer.restore(sess, checkpoint_path)
+            tf.train.Saver().restore(sess, checkpoint_path)
             print ('restored previous model %s from %s'\
                     %(checkpoint_path, FLAGS.train_dir))
             time.sleep(2)
