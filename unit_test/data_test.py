@@ -45,7 +45,7 @@ with tf.Graph().as_default():
            [50, 50, 60, 60]]
   # boxes = np.zeros((0, 4))
   boxes = tf.constant(boxes, tf.float32)
-  feat = ROIAlign(image, boxes, False, 16, 7, 7)
+  feat, _ = ROIAlign(image, boxes, False, 16, 7, 7)
   sess.run(init_op)
 
   tf.train.start_queue_runners(sess=sess)
